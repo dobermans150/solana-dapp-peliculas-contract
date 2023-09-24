@@ -17,9 +17,12 @@ pub mod solana_movies {
 #[derive(Accounts)]
 #[instruction(gif_url: String)]
 pub struct Initialize<'info> {
-
-    #[account(init, seeds = [b"gif_account", user.key().as_ref(), 
-    gif_url.as_bytes()], bump, payer = user, space = 8+32+gif_url.as_bytes().len()+4)]
+    #[
+        account(init, seeds = [b"gif_account", user.key().as_ref(), gif_url.as_bytes()],
+    bump,
+    payer = user,
+    space = 8 + 32 + gif_url.as_bytes().len() + 4)
+    ]
     pub movie_gif: Account<'info, MovieGif>,
 
     #[account(mut)]
@@ -27,6 +30,7 @@ pub struct Initialize<'info> {
     pub system_program: Program<'info, System>,
 }
 
+// PDA
 #[account]
 #[derive(Default)]
 pub struct MovieGif {
